@@ -14,10 +14,16 @@ public class Enemy_Follow : MonoBehaviour
 
     //public NavMeshAgent Enemy;
 
-    public NavMeshAgent Enemy_Heavy;
-    public NavMeshAgent Enemy_Medium;
-    public NavMeshAgent Enemy_Light;
+    //public NavMeshAgent enemy_kicker;
 
+    // public NavMeshAgent enemy_slow;
+
+    // public NavMeshAgent enemy_medium;
+
+    // public NavMeshAgent enemy_fast;
+
+    public NavMeshAgent enemy;
+  
 
     public Transform Player;
 
@@ -26,7 +32,7 @@ public class Enemy_Follow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+    
     }
 
     // Update is called once per frame
@@ -35,11 +41,20 @@ public class Enemy_Follow : MonoBehaviour
 
         //Enemy.SetDestination(Player.position);
 
-        Enemy_Heavy.SetDestination(Player.position);
 
-        Enemy_Medium.SetDestination(Player.position);
+        //enemy_kicker.SetDestination(FPS_Controller.position);
 
-        Enemy_Light.SetDestination(Player.position);
-        
+        //enemy_slow.SetDestination(FPS_Controller.position);
+
+        //enemy_medium.SetDestination(FPS_Controller.position);
+
+        //enemy_fast.SetDestination(FPS_Controller.position);
+
+
+
+        enemy.SetDestination(Player.position);
+     
+
+
     }
 }
