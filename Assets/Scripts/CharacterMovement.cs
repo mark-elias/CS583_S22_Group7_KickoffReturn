@@ -52,5 +52,8 @@ public class CharacterMovement : MonoBehaviour
             controller.Move(moveDir.normalized * targetSpeed * Time.deltaTime);
 
         }
+
     }
 }
+
+    
