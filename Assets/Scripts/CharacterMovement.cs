@@ -36,7 +36,7 @@ public class CharacterMovement : MonoBehaviour
             if (running)
             {
                 runningTimer += Time.deltaTime;
-                Debug.Log(runningTimer);
+                //Debug.Log(runningTimer);
             }
 
 
@@ -50,7 +50,7 @@ public class CharacterMovement : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * targetSpeed * Time.deltaTime);
-
+            
         }
 
     }
