@@ -9,14 +9,6 @@ using UnityEngine.SceneManagement;
 public class SceneManagerScript : MonoBehaviour
 {
 
-    // --------------------old code ---------
-    //public Text output_rocketName;      // stored
-
-    // public GameObject inputField;       // input
-
-    // public GameObject textDisplay;      // output
-
-
     public Text Output_TestingValue;
 
     //---------------------------------------------------------------
@@ -30,7 +22,7 @@ public class SceneManagerScript : MonoBehaviour
     // Color
     //----------------------------------------------------------------
 
-    public InputField Input_Color;
+    public Dropdown Input_Color;
     public Text Output_Color;
 
     //---------------------------------------------------------------
@@ -137,17 +129,44 @@ public class SceneManagerScript : MonoBehaviour
     //
     //-------------------------------------------------------------------
 
-    public void UserChoseBlue()
+    public void SelectPlayerColor()
     {
-        PersistentManagerScript.Instance.PLAYER_COLOR = "BLUE";
-    }
-    public void UserChoseGreen()
-    {
-        PersistentManagerScript.Instance.PLAYER_COLOR = "GREEN";
-    }
-    public void UserChoseRed()
-    {
-        PersistentManagerScript.Instance.PLAYER_COLOR = "RED";
+        // Drop Down menu outputs INTEGER values
+        // convert a STRING to TEXT by using .text
+
+        if (Input_Color.value == 0)
+        {
+            Output_Color.text = "BLUE";
+
+            PersistentManagerScript.Instance.PLAYER_COLOR = "BLUE";
+
+            Output_TestingValue.text = PersistentManagerScript.Instance.PLAYER_COLOR;
+
+        }
+
+        else if (Input_Color.value == 1)
+        {
+            Output_Color.text = "GREEN";
+
+            PersistentManagerScript.Instance.PLAYER_COLOR = "GREEN";
+
+            Output_TestingValue.text = PersistentManagerScript.Instance.PLAYER_COLOR;
+        }
+
+        else if (Input_Color.value == 2)
+        {
+            Output_Color.text = "RED";
+
+            PersistentManagerScript.Instance.PLAYER_COLOR = "RED";
+
+            Output_TestingValue.text = PersistentManagerScript.Instance.PLAYER_COLOR;
+        }
+
+        else
+        {
+            Output_Color.text = "Choose a Player Color";
+        }
+
     }
 
     //----------- Choosing Player Difficulty ----------------------------
@@ -157,17 +176,32 @@ public class SceneManagerScript : MonoBehaviour
     // and then change the Value in the Player Script
     //
     //-------------------------------------------------------------------
-    public void UserChoseEasy()
+
+    public void SelectDifficulty()
     {
-        PersistentManagerScript.Instance.DIFFICULTY = "EASY";
-    }
-    public void UserChoseMedium()
-    {
-        PersistentManagerScript.Instance.DIFFICULTY = "MEDIUM";
-    }
-    public void UserChoseHard()
-    {
-        PersistentManagerScript.Instance.DIFFICULTY = "HARD";
+        // Drop Down menu outputs INTEGER values
+        // convert a STRING to TEXT by using .text
+
+        if (Input_Color.value == 0)
+        {
+            Output_Color.text = "BLUE";
+        }
+
+        else if (Input_Color.value == 1)
+        {
+            Output_Color.text = "GREEN";
+        }
+
+        else if (Input_Color.value == 2)
+        {
+            Output_Color.text = "RED";
+        }
+
+        else
+        {
+            Output_Color.text = "Choose a Player Color";
+        }
+
     }
 
     //------------------------------------------------------
