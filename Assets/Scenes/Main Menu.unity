@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 236762793}
   - component: {fileID: 236762792}
   m_Layer: 5
-  m_Name: Text_Display
+  m_Name: Text_Difficulty_Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,7 +496,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &236762793
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 484269932}
   - component: {fileID: 484269931}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: Dropdown_Difficulty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1033,18 +1033,18 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: BLUE
+    - m_Text: EASY
       m_Image: {fileID: 0}
-    - m_Text: GREEN
+    - m_Text: MEDIUM
       m_Image: {fileID: 0}
-    - m_Text: RED
+    - m_Text: HARD
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1899583974}
         m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
-        m_MethodName: SelectPlayerColor
+        m_MethodName: SelectDifficulty
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1264,7 +1264,7 @@ GameObject:
   - component: {fileID: 611349959}
   - component: {fileID: 611349958}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: Dropdown_Color
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2176,7 +2176,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BLUE
+  m_Text: EASY
 --- !u!222 &797559491
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3397,7 +3397,7 @@ GameObject:
   - component: {fileID: 1498293934}
   - component: {fileID: 1498293933}
   m_Layer: 5
-  m_Name: Text_Color
+  m_Name: Text_Difficulty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3455,7 +3455,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Choose your Players Color
+  m_Text: Choose the game Difficulty
 --- !u!222 &1498293934
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3476,7 +3476,7 @@ GameObject:
   - component: {fileID: 1520988296}
   - component: {fileID: 1520988295}
   m_Layer: 5
-  m_Name: Text_Display
+  m_Name: Text_Color_Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3534,7 +3534,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1520988296
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4421,8 +4421,8 @@ MonoBehaviour:
   Output_Name: {fileID: 1810554108}
   Input_Color: {fileID: 611349958}
   Output_Color: {fileID: 1520988295}
-  Input_Difficulty: {fileID: 0}
-  Output_Difficulty: {fileID: 0}
+  Input_Difficulty: {fileID: 484269931}
+  Output_Difficulty: {fileID: 236762792}
 --- !u!4 &1899583975
 Transform:
   m_ObjectHideFlags: 0

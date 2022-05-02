@@ -29,7 +29,7 @@ public class SceneManagerScript : MonoBehaviour
     // Difficulty
     //----------------------------------------------------------------
 
-    public InputField Input_Difficulty;
+    public Dropdown Input_Difficulty;
     public Text Output_Difficulty;
 
 
@@ -182,24 +182,36 @@ public class SceneManagerScript : MonoBehaviour
         // Drop Down menu outputs INTEGER values
         // convert a STRING to TEXT by using .text
 
-        if (Input_Color.value == 0)
+        if (Input_Difficulty.value == 0)
         {
-            Output_Color.text = "BLUE";
+            Output_Difficulty.text = "EASY";
+
+            PersistentManagerScript.Instance.DIFFICULTY = "EASY";
+
+            Output_TestingValue.text = PersistentManagerScript.Instance.DIFFICULTY;
         }
 
-        else if (Input_Color.value == 1)
+        else if (Input_Difficulty.value == 1)
         {
-            Output_Color.text = "GREEN";
+            Output_Difficulty.text = "MEDIUM";
+
+            PersistentManagerScript.Instance.DIFFICULTY = "MEDIUM";
+
+            Output_TestingValue.text = PersistentManagerScript.Instance.DIFFICULTY;
         }
 
-        else if (Input_Color.value == 2)
+        else if (Input_Difficulty.value == 2)
         {
-            Output_Color.text = "RED";
+            Output_Difficulty.text = "HARD";
+
+            PersistentManagerScript.Instance.DIFFICULTY = "HARD";
+
+            Output_TestingValue.text = PersistentManagerScript.Instance.DIFFICULTY;
         }
 
         else
         {
-            Output_Color.text = "Choose a Player Color";
+            Output_Color.text = "Choose a Game Difficulty";
         }
 
     }
