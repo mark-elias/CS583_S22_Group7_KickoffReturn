@@ -9,15 +9,37 @@ using UnityEngine.SceneManagement;
 public class SceneManagerScript : MonoBehaviour
 {
 
-
+    // --------------------old code ---------
     //public Text output_rocketName;      // stored
 
-   // public GameObject inputField;       // input
+    // public GameObject inputField;       // input
 
-   // public GameObject textDisplay;      // output
-    //--------------------------------------------------
+    // public GameObject textDisplay;      // output
 
-   // public GameObject displayHealth;
+
+    public Text Output_TestingValue;
+
+    //---------------------------------------------------------------
+    // Name
+    //----------------------------------------------------------------
+
+    public InputField Input_Name;
+    public Text Output_Name;
+
+    //---------------------------------------------------------------
+    // Color
+    //----------------------------------------------------------------
+
+    public InputField Input_Color;
+    public Text Output_Color;
+
+    //---------------------------------------------------------------
+    // Difficulty
+    //----------------------------------------------------------------
+
+    public InputField Input_Difficulty;
+    public Text Output_Difficulty;
+
 
     // --------------------------------------------------------------
     //
@@ -95,9 +117,16 @@ public class SceneManagerScript : MonoBehaviour
     {
         Debug.Log("Player has entered their name");
 
-        //PersistentManagerScript.Instance.PLAYER_NAME = inputField.GetComponent<Text>().text;
+        // Display Name to screen
+        Output_Name.text = Input_Name.text;
 
-       // textDisplay.GetComponent<Text>().text = PersistentManagerScript.Instance.PLAYER_NAME.ToString();
+        // Save Name to Persistent Manager
+        // use .text and NOT toString()
+        PersistentManagerScript.Instance.PLAYER_NAME = Input_Name.text;
+
+        Output_TestingValue.text = PersistentManagerScript.Instance.PLAYER_NAME;
+
+        
     }
 
     //----------- Choosing Player Color ----------------------------
