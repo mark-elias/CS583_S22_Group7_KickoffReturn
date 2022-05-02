@@ -43,18 +43,9 @@ public class SceneManagerScript : MonoBehaviour
     //----------------------------------------------------------------
     private void Start()
     {
-        // valueText.text = PersistentManagerScript.Instance.Value.ToString();
 
-        //rocketName.text = PersistentManagerScript.Instance.rocketName.ToString();
-
-        // SceneManager.LoadScene("Main Scene");
-
-        //  textDisplay.GetComponent<Text>().text = PersistentManagerScript.Instance.rocketName.ToString();
-
-
-        // displaying player health
-
-        //displayHealth.GetComponent<Text>().text = PersistentManagerScript.Instance.playerHealth.ToString();
+        // displays STATIC values: NAME, COLOR, and DIFFICULTY to the PlayGameScene
+        // when that scene is loaded
 
         Output_Testing_NAME.text = PersistentManagerScript.Instance.PLAYER_NAME;
 
@@ -88,7 +79,7 @@ public class SceneManagerScript : MonoBehaviour
     {
         Debug.Log("How to Play scene called");
 
-        //SceneManager.LoadScene("HowToPlayScene");
+        SceneManager.LoadScene("HowToPlayScene");
 
     }
 
@@ -96,7 +87,7 @@ public class SceneManagerScript : MonoBehaviour
     {
         Debug.Log("Credits scene called");
 
-        //SceneManager.LoadScene("CreditsScene");
+        SceneManager.LoadScene("CreditsScene");
 
     }
 
@@ -236,7 +227,7 @@ public class SceneManagerScript : MonoBehaviour
 
         Debug.Log("Main Menu scene has been called");
 
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenuScene");
 
         // updating STATIC variable
         //PersistentManagerScript.Instance.Value++;
@@ -247,7 +238,7 @@ public class SceneManagerScript : MonoBehaviour
     {
         Debug.Log("game over scene called");
 
-        // SceneManager.LoadScene("Game Over");
+        SceneManager.LoadScene("GameOverScene");
 
     }
 
