@@ -12,12 +12,14 @@ public class CharacterMove : MonoBehaviour
 
     public float walkingSpeed = 40f;
     public float runningSpeed = 100f;
+    public float jukeSpeed = 60f;
 
-    public float timeToRunning = 3.0f;
+    public float runningTimestamp = 0f;
+    private float walkingTimestamp = 0f;
+    public bool running;
 
-    float runningTimer = 0f;
-
-
+    [SerializeField]
+    private TrackEnergy energy;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
 
@@ -35,27 +37,20 @@ public class CharacterMove : MonoBehaviour
             float vertical = Input.GetAxisRaw("Vertical");
             Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
+            CheckRun();
+            if (running) {
+                energy.DepleteStamina(1f);
+            } else {
+                energy.AddStamina(1f);
+            }
+
             if (direction.magnitude >= 0.1f)
             {
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-                bool running = Input.GetKey(KeyCode.LeftShift);
-                if (running)
-                {
-                    runningTimer += Time.deltaTime;
-                    //Debug.Log(runningTimer);
-                }
-
-
-                if (running && runningTimer > timeToRunning)
-                {
-                    running = false;
-                    runningTimer = 0;
-                }
-                float targetSpeed = ((running) ? runningSpeed : walkingSpeed);
-
+                float targetSpeed = running ? runningSpeed : walkingSpeed;
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 finalMove = moveDir * targetSpeed;
@@ -64,6 +59,20 @@ public class CharacterMove : MonoBehaviour
             }
         } else {
             finalMove = transform.forward*10f;
+        }
+    }
+
+    void CheckRun() {
+         if (running && (energy.curStamina <= 0 || !Input.GetKey(KeyCode.LeftShift))) {
+            running = false;
+            walkingTimestamp = Time.time;
+            Debug.Log("end sprint");
+        } else {
+            if (!running && Input.GetKeyDown(KeyCode.LeftShift) && energy.curStamina >= 25) {
+                runningTimestamp = Time.time;
+                running = true;
+                Debug.Log("start sprint");
+            }
         }
     }
 

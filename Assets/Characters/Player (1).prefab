@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &985126522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985126523}
+  m_Layer: 0
+  m_Name: LookPOINT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &985126523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985126522}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.017, y: 1.59, z: 0.153}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7871809258666756891}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &98593282790336797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,6 +1884,7 @@ GameObject:
   - component: {fileID: 7689036189508824846}
   - component: {fileID: 7689036189508824845}
   - component: {fileID: 7689036189508824844}
+  - component: {fileID: 725591270}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
@@ -1874,6 +1905,7 @@ Transform:
   m_Children:
   - {fileID: 8831386597842299180}
   - {fileID: 2408891561769757583}
+  - {fileID: 985126523}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1911,7 +1943,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &7689036189508824843
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1950,9 +1982,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d291577d1d1a4fa794b00b43a6ebaf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementForce: 1
-  maxSpeed: 5
-  playerCamera: {fileID: 0}
+  cam: {fileID: 0}
+  walkingSpeed: 25
+  runningSpeed: 40
+  timeToRunning: 3
+  turnSmoothTime: 0.1
 --- !u!114 &7689036189508824844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1965,6 +1999,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388d93c683384be408b88d4ae28d79cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &725591270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7382974826526724513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c761ca6c3606c347aec6e7a91611982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  control: 0
 --- !u!1 &7542354920063807158
 GameObject:
   m_ObjectHideFlags: 0
