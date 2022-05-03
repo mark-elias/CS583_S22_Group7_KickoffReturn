@@ -157,6 +157,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 		public void tryTackle()
 		{
+			m_Rigidbody.AddForce(-m_Rigidbody.velocity);
 			m_Animator.SetTrigger("Dive");
 		}
 		void HandleAirborneMovement()
