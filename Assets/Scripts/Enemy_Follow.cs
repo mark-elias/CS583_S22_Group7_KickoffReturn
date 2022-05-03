@@ -6,6 +6,13 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
+//---------------------------------------------
+// edited by Marcos
+//
+using UnityEngine.SceneManagement;
+//
+//---------------------------------------------
+
 public class Enemy_Follow : MonoBehaviour
 
 {
@@ -91,6 +98,17 @@ public class Enemy_Follow : MonoBehaviour
         {
             Debug.Log("Tackled");
             character.Move(Vector3.zero, false, false);
+
+            // ----------------------------------------------
+            // Edited by Marcos
+            // 
+            // When the Player gets "tackled", the GameOver scene will load
+            //
+            SceneManager.LoadScene("GameOverScene");
+            //
+            // ----------------------------------------------------------------
+
+            
         }
     }
 }
