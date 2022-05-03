@@ -98,6 +98,10 @@ public class Enemy_Follow : MonoBehaviour
         {
             Debug.Log("Tackled");
             character.Move(Vector3.zero, false, false);
+            FindObjectOfType<AudioManager>().Play("Tackled");
+            //play running audio
+            FindObjectOfType<AudioManager>().PlayShot("CrowdAnrgy");
+
 
             // ----------------------------------------------
             // Edited by Marcos

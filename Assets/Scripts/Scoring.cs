@@ -17,6 +17,9 @@ public class Scoring : MonoBehaviour
     {
         startingPos = GameObject.Find("PlayerStarting");
         player = GameObject.FindGameObjectWithTag("Player");
+
+        //Max start stadium audio
+        FindObjectOfType<AudioManager>().Play("StadiumNoise");
     }
 
     // Update is called once per frame
@@ -31,7 +34,7 @@ public class Scoring : MonoBehaviour
         {
             float diff = player.transform.position.z - startingPos.transform.position.z;
            
-            score = diff;  
+            score = (diff >= 0 ? diff : 0);  
         }
         else
         {
@@ -44,7 +47,7 @@ public class Scoring : MonoBehaviour
 
     public void touchDown()
     {
-        Debug.Log("TouchDown!!!!!");
+    
 
         //--------------------------------------------
         // Edited by Marcos

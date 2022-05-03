@@ -23,6 +23,11 @@ public class CharacterMovement : MonoBehaviour
     float turnSmoothVelocity;
 
     void Start() {
+
+        //Max start stadium audio
+        FindObjectOfType<AudioManager>().Play("StadiumNoise");
+        Debug.Log("PLay Stadiuym");
+
         // Cursor.lockState = CursorLockMode.Locked;
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
@@ -33,6 +38,7 @@ public class CharacterMovement : MonoBehaviour
         // the Player speed changed depending on what DIFFICULTY
         // was chosen at the MainMenu
         //
+
         if (PersistentManagerScript.Instance.DIFFICULTY == "EASY")
         {
             runningSpeed = 16;
@@ -70,10 +76,12 @@ public class CharacterMovement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if (direction.magnitude >= 0.1f)
-        {
+        if (direction.magnitude >= 0.01f)
+        { 
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            
+
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             bool running = Input.GetKey(KeyCode.LeftShift);
@@ -99,6 +107,7 @@ public class CharacterMovement : MonoBehaviour
                 animator.SetBool("moving", false);
             } else {
                 animator.SetBool("moving", true);
+                
             }
             controller.Move(moveDir * targetSpeed * Time.deltaTime);
         } else {

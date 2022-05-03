@@ -47,15 +47,17 @@ public class SceneManagerScript : MonoBehaviour
         // displays STATIC values: NAME, COLOR, and DIFFICULTY to the PlayGameScene
         // when that scene is loaded
 
-        Output_Testing_NAME.text = PersistentManagerScript.Instance.PLAYER_NAME;
+        if (Output_Testing_NAME!=null)
+            Output_Testing_NAME.text = PersistentManagerScript.Instance.PLAYER_NAME;
 
-        Output_Testing_COLOR.text = PersistentManagerScript.Instance.PLAYER_COLOR;
+        if (Output_Testing_COLOR != null)
+            Output_Testing_COLOR.text = PersistentManagerScript.Instance.PLAYER_COLOR;
 
-        Output_Testing_DIFFICULTY.text = PersistentManagerScript.Instance.DIFFICULTY;
-
+        if (Output_Testing_DIFFICULTY != null)
+            Output_Testing_DIFFICULTY.text = PersistentManagerScript.Instance.DIFFICULTY;
 
     }
-
+    
     private void Update()
     {
 
