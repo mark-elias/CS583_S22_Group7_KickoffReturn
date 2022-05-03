@@ -19,6 +19,7 @@ public class touchDown : MonoBehaviour
             if (playerScore != null)
             {
                 playerScore.GetComponent<Scoring>().touchDown();
+
             }
         }
     }

@@ -9,7 +9,15 @@ public class CharacterMovement : MonoBehaviour
     public Transform cam;
     private Animator animator;
 
-    public float walkingSpeed = 6f;
+    //----------------------------------------------
+    // Edited by Marcos
+    // I increased the Player speed to make the game easier
+    // for some reason the walking speed controls the speed in game
+    // and not the running speed
+    //
+    public float walkingSpeed = 10f;
+    //----------------------------------------------------
+
     public float runningSpeed = 12f;
 
     public float timeToRunning = 3.0f;
@@ -24,6 +32,42 @@ public class CharacterMovement : MonoBehaviour
         // Cursor.lockState = CursorLockMode.Locked;
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
+
+        //-------------------------------------------------------------------
+        // Edited by Marcos
+        //
+        // the Player speed changed depending on what DIFFICULTY
+        // was chosen at the MainMenu
+        //
+        if (PersistentManagerScript.Instance.DIFFICULTY == "EASY")
+        {
+            walkingSpeed = 15;
+
+            Debug.Log("DIFFICULTY set to EASY");
+        }
+
+        else if (PersistentManagerScript.Instance.DIFFICULTY == "MEDIUM")
+        {
+            walkingSpeed = 10;
+
+            Debug.Log("DIFFICULTY set to MEDIUM");
+
+        }
+
+        else if (PersistentManagerScript.Instance.DIFFICULTY == "HARD")
+        {
+            walkingSpeed = 7;
+
+            Debug.Log("DIFFICULTY set to HARD");
+
+        }
+
+        else
+        {
+            walkingSpeed = 10;
+        }
+        //
+        //-----------------------------------------------------------------------------
     }
 
     void Update()

@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//------------------------------------
+// Edited by Marcos
+//
+using UnityEngine.SceneManagement;
+//----------------------------------------
+
 public class Scoring : MonoBehaviour
 {
     private GameObject startingPos;
@@ -39,6 +45,13 @@ public class Scoring : MonoBehaviour
     public void touchDown()
     {
         Debug.Log("TouchDown!!!!!");
+
+        //--------------------------------------------
+        // Edited by Marcos
+        //
+        SceneManager.LoadScene("WinningScene");
+        //
+        //----------------------------------------------
     }
 
 }
