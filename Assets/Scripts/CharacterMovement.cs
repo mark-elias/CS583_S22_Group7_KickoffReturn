@@ -9,14 +9,8 @@ public class CharacterMovement : MonoBehaviour
     public Transform cam;
     private Animator animator;
 
-    //----------------------------------------------
-    // Edited by Marcos
-    // I increased the Player speed to make the game easier
-    // for some reason the walking speed controls the speed in game
-    // and not the running speed
-    //
-    public float walkingSpeed = 10f;
-    //----------------------------------------------------
+   
+    public float walkingSpeed = 6f;
 
     public float runningSpeed = 12f;
 
@@ -41,14 +35,14 @@ public class CharacterMovement : MonoBehaviour
         //
         if (PersistentManagerScript.Instance.DIFFICULTY == "EASY")
         {
-            walkingSpeed = 15;
+            runningSpeed = 12;
 
             Debug.Log("DIFFICULTY set to EASY");
         }
 
         else if (PersistentManagerScript.Instance.DIFFICULTY == "MEDIUM")
         {
-            walkingSpeed = 10;
+            runningSpeed = 8;
 
             Debug.Log("DIFFICULTY set to MEDIUM");
 
@@ -56,7 +50,7 @@ public class CharacterMovement : MonoBehaviour
 
         else if (PersistentManagerScript.Instance.DIFFICULTY == "HARD")
         {
-            walkingSpeed = 7;
+            runningSpeed = 4;
 
             Debug.Log("DIFFICULTY set to HARD");
 
@@ -64,7 +58,7 @@ public class CharacterMovement : MonoBehaviour
 
         else
         {
-            walkingSpeed = 10;
+            runningSpeed = 8;
         }
         //
         //-----------------------------------------------------------------------------
