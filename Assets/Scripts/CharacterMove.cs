@@ -1,123 +1,73 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CharacterMove : MonoBehaviour
 {
-    //input fields
-    private ThirdPersonActionsAsset playerActionsAsset;
-    private InputAction move;
-
-    //movement fields
     private Rigidbody rb;
-    [SerializeField]
-    public float movementForce = 3f;
-    [SerializeField]
-    private float maxSpeed = 5f;
-    private Vector3 forceDirection = Vector3.zero;
-
-    [SerializeField]
-    private Camera playerCamera;
+    public Transform cam;
     private Animator animator;
+    private Vector3 finalMove;
+    private CutsceneJump cutscene;
 
-    private void Awake()
-    {
-        rb = this.GetComponent<Rigidbody>();
-        playerActionsAsset = new ThirdPersonActionsAsset();
-        animator = this.GetComponent<Animator>();
+    public float walkingSpeed = 40f;
+    public float runningSpeed = 100f;
+
+    public float timeToRunning = 3.0f;
+
+    float runningTimer = 0f;
+
+
+    public float turnSmoothTime = 0.1f;
+    float turnSmoothVelocity;
+
+    void Start() {
+        // Cursor.lockState = CursorLockMode.Locked;
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+        cutscene = GetComponent<CutsceneJump>();
     }
 
-    private void OnEnable()
+    void Update()
     {
+        if (cutscene.control) {
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
+            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        playerActionsAsset.Player.Sprint.started += DoSprint;
+            if (direction.magnitude >= 0.1f)
+            {
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-        // playerActionsAsset.Player.Attack.started += DoAttack;
-        move = playerActionsAsset.Player.Move;
-        playerActionsAsset.Player.Enable();
-    }
+                bool running = Input.GetKey(KeyCode.LeftShift);
+                if (running)
+                {
+                    runningTimer += Time.deltaTime;
+                    //Debug.Log(runningTimer);
+                }
 
-    private void OnDisable()
-    {
-        playerActionsAsset.Player.Sprint.started -= DoSprint;
-        // playerActionsAsset.Player.Attack.started -= DoAttack;
-        playerActionsAsset.Player.Disable();
-    }
 
-    private void Update()
-    {
+                if (running && runningTimer > timeToRunning)
+                {
+                    running = false;
+                    runningTimer = 0;
+                }
+                float targetSpeed = ((running) ? runningSpeed : walkingSpeed);
 
-        if (movementForce == 5f)
-        {
-            Invoke("setBack", 1f);
+
+                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                finalMove = moveDir * targetSpeed;
+            } else {
+                finalMove = Vector3.zero;
+            }
+        } else {
+            finalMove = transform.forward*10f;
         }
-        else
-        {
-            movementForce = 3f;
-        }
-
-        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * movementForce;
-        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * movementForce;
-
-        rb.AddForce(forceDirection, ForceMode.Impulse);
-        forceDirection = Vector3.zero;
-
-
-        if (rb.velocity.y < 0f)
-            rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
-
-        Vector3 horizontalVelocity = rb.velocity;
-        horizontalVelocity.y = 0;
-        if (horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
-            rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
-
-        LookAt();
     }
 
-    private void LookAt()
-    {
-        Vector3 direction = rb.velocity;
-        direction.y = 0f;
-
-        if (move.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
-            this.rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
-        else
-            rb.angularVelocity = Vector3.zero;
+    void FixedUpdate() {
+        rb.AddForce(finalMove);
     }
-
-    private Vector3 GetCameraForward(Camera playerCamera)
-    {
-        Vector3 forward = playerCamera.transform.forward;
-        forward.y = 0;
-        return forward.normalized;
-    }
-
-    private Vector3 GetCameraRight(Camera playerCamera)
-    {
-        Vector3 right = playerCamera.transform.right;
-        right.y = 0;
-        return right.normalized;
-    }
-
-    private void DoSprint(InputAction.CallbackContext obj)
-    {
-        Debug.Log("Sprint");
-        movementForce = 5f;
-        animator.SetTrigger("sprint");
-    }
-
-    // private void DoAttack(InputAction.CallbackContext obj)
-    // {
-    //     animator.SetTrigger("attack");
-    // }
-
-    public void setBack()
-    {
-        movementForce = 3f;
-    }
-
-
-
 }
