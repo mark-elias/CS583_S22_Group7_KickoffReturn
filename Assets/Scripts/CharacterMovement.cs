@@ -35,14 +35,14 @@ public class CharacterMovement : MonoBehaviour
         //
         if (PersistentManagerScript.Instance.DIFFICULTY == "EASY")
         {
-            runningSpeed = 12;
+            runningSpeed = 16;
 
             Debug.Log("DIFFICULTY set to EASY");
         }
 
         else if (PersistentManagerScript.Instance.DIFFICULTY == "MEDIUM")
         {
-            runningSpeed = 8;
+            runningSpeed = 12;
 
             Debug.Log("DIFFICULTY set to MEDIUM");
 
@@ -50,7 +50,7 @@ public class CharacterMovement : MonoBehaviour
 
         else if (PersistentManagerScript.Instance.DIFFICULTY == "HARD")
         {
-            runningSpeed = 4;
+            runningSpeed = 8;
 
             Debug.Log("DIFFICULTY set to HARD");
 
@@ -58,7 +58,7 @@ public class CharacterMovement : MonoBehaviour
 
         else
         {
-            runningSpeed = 8;
+            runningSpeed = 10;
         }
         //
         //-----------------------------------------------------------------------------

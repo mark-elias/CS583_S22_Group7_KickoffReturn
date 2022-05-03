@@ -119,7 +119,7 @@ public class SceneManagerScript : MonoBehaviour
 
         Output_Testing_NAME.text = PersistentManagerScript.Instance.PLAYER_NAME;
 
-        
+
     }
 
     //----------- Choosing Player Color ----------------------------
@@ -241,6 +241,13 @@ public class SceneManagerScript : MonoBehaviour
 
         SceneManager.LoadScene("GameOverScene");
 
+    }
+
+    public void GoToWinningScene()
+    {
+        Debug.Log("WinningScene has been called");
+
+        SceneManager.LoadScene("WinningScene");
     }
 
 
