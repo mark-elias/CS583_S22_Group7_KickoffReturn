@@ -2781,7 +2781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  doesDive: 0
+  doesDive: 1
   doesWaitTillCloseToFollow: 0
   distanceAwayUntilFollows: 25
   character: {fileID: 1749388319748540141}
