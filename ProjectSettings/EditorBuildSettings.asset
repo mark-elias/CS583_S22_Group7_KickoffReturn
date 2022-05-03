@@ -4,5 +4,23 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Marcos_MainMenu_&_otherScenes/MainMenuScene.unity
+    guid: 55db8af375c673549a8595523fa7cc04
+  - enabled: 1
+    path: Assets/Scenes/Marcos_MainMenu_&_otherScenes/HowToPlayScene.unity
+    guid: e5da7eec6ad29a64fa6d87e73db2b0ff
+  - enabled: 1
+    path: Assets/Scenes/Marcos_MainMenu_&_otherScenes/CreditsScene.unity
+    guid: 03beff9b75752a04ca21365876c693b2
+  - enabled: 1
+    path: Assets/Scenes/PlayerRunField.unity
+    guid: a1245aa95ec2f3a4a8090a7ca50d158e
+  - enabled: 1
+    path: Assets/Scenes/Marcos_MainMenu_&_otherScenes/GameOverScene.unity
+    guid: 3e2e53c38a86f654a9f4f69cf523057b
+  - enabled: 1
+    path: Assets/Scenes/Marcos_MainMenu_&_otherScenes/WinningScene.unity
+    guid: b0bcc9274ed6fd8418d3519270c15aa5
   m_configObjects: {}
