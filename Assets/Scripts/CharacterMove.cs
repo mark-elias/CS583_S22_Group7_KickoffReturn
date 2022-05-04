@@ -18,6 +18,11 @@ public class CharacterMove : MonoBehaviour
     private float walkingTimestamp = 0f;
     public bool running;
 
+    private float jukeTimestamp = 0f;
+    private float jukeRecovery = 2f;
+    public float jukePower = 5f;
+    private string jukeType = "none";
+
     [SerializeField]
     private TrackEnergy energy;
     public float turnSmoothTime = 0.1f;
@@ -28,6 +33,7 @@ public class CharacterMove : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         cutscene = GetComponent<CutsceneJump>();
+        jukeTimestamp = Time.time;
     }
 
     void Update()
@@ -44,6 +50,7 @@ public class CharacterMove : MonoBehaviour
                 energy.AddStamina(1f);
             }
 
+            PullJuke();
             if (direction.magnitude >= 0.1f)
             {
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
@@ -76,7 +83,31 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
+    void PullJuke() {
+        if (jukeType == "none" && jukeTimestamp + jukeRecovery <= Time.time) {
+            if (Input.GetKey(KeyCode.E)) {
+                jukeTimestamp = Time.time;
+                jukeType = "right";
+            } else if (Input.GetKey(KeyCode.Q)) {
+                jukeTimestamp = Time.time;
+                jukeType = "left";
+            }
+        }
+    }
+
     void FixedUpdate() {
-        rb.AddForce(finalMove);
+        if (jukeType == "none") {
+            rb.AddForce(finalMove);
+        } else {
+            if (jukeType == "right") {
+                Debug.Log("juke right");
+                rb.AddForce(jukePower * transform.right, ForceMode.Impulse);
+            } else if (jukeType == "left") {
+                Debug.Log("juke left");
+                rb.AddForce(jukePower * -transform.right, ForceMode.Impulse);
+            }
+            jukeType = "none";
+        }
+        
     }
 }

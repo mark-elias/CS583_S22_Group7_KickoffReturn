@@ -10,29 +10,32 @@ public class BallPath : MonoBehaviour
     private Transform end;
 
     private Rigidbody rb;
-    private bool ended = false;
     private float speed = 25;
     private GameObject player;
     private bool caught = false;
+    private AudioSource catchSFX;
+    private Vector3 targetVel = new Vector3();
+    private Vector3 refVel = Vector3.zero;
 
     void Start() {
         transform.position = start.position;
         player = GameObject.FindWithTag("Player");
+        catchSFX = GetComponent<AudioSource>();
 
-        // rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate() {
+        transform.position = Vector3.MoveTowards(transform.position, end.position, speed*Time.deltaTime);
         if (!caught) {
-            transform.position = Vector3.MoveTowards(transform.position, end.position, speed*Time.deltaTime);
-        } else {
-            transform.position = end.position;
+            CheckCatch();
         }
     }
 
     void CheckCatch() {
         if (Vector3.Distance(transform.position, end.position) < 0.5f) {
             caught = true;
+            catchSFX.Play();
         }
     }
 }

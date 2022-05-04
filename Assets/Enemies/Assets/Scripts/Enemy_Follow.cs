@@ -55,7 +55,6 @@ public class Enemy_Follow : MonoBehaviour
     {
         if (player != null && enemy != null)
         {
-            Debug.Log(player.transform.position);
             enemy.SetDestination(player.transform.position);
         }
 
