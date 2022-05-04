@@ -20,6 +20,7 @@ public class CharacterMove : MonoBehaviour
 
     private float jukeTimestamp = 0f;
     private float jukeRecovery = 2f;
+    private float jukeDuration = 0.3f;
     public float jukePower = 5f;
     private string jukeType = "none";
 
@@ -96,14 +97,16 @@ public class CharacterMove : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (jukeType == "none") {
+        if (jukeType == "none" && jukeTimestamp + jukeDuration <= Time.time) {
             rb.AddForce(finalMove);
         } else {
             if (jukeType == "right") {
-                Debug.Log("juke right");
+
+                animator.SetTrigger("jukeRight");
                 rb.AddForce(jukePower * transform.right, ForceMode.Impulse);
             } else if (jukeType == "left") {
-                Debug.Log("juke left");
+
+                animator.SetTrigger("jukeLeft");
                 rb.AddForce(jukePower * -transform.right, ForceMode.Impulse);
             }
             jukeType = "none";
