@@ -46,7 +46,7 @@ public class Enemy_Follow : MonoBehaviour
         normSpeed = Random.Range(normSpeed-(speedDiff/2), normSpeed+(speedDiff/2));
         character.m_MoveSpeedMultiplier = normSpeed;
         
-        Debug.Log(character.m_MoveSpeedMultiplier);
+        //Debug.Log(character.m_MoveSpeedMultiplier);
 
     }
 

@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class playerCollision : MonoBehaviour
 {
     void OnCollisionEnter(Collision hit)
     {
+        if (hit.transform.name == "Turf")
+        {
+            FindObjectOfType<AudioManager>().Play("CrowdAngry");
+            SceneManager.LoadScene("GameOver");
+        }
         if (hit.transform.name == "TR")
         {
             //pause enemies by deselcting them
