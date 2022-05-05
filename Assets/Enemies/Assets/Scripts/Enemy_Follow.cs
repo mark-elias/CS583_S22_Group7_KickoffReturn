@@ -7,93 +7,77 @@ using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Enemy_Follow : MonoBehaviour
-
 {
-
-
     public NavMeshAgent enemy;
+    private float speedDiff = 0.15f;
+    private float diveCooldown = 1.5f;
 
-    public bool doesDive = false;
-    public bool doesWaitTillCloseToFollow = false;
-    public float distanceAwayUntilFollows = 25;
     private GameObject player;
-    public ThirdPersonCharacter character;
-    public float diveCooldown = 5f;
-    private float diveTimer = 0;
-    private float diveDistanceMultiplyier = 30;
+    private Rigidbody rb;
+    private Rigidbody playerRB;
+    private ThirdPersonCharacter character;
 
+    private float diveTimer = 0f;
     private float distanceToGo;
     private float stoppingDis;
-    // changed
+    private float tackleDis = 3f;
+    private float tackleMultiplier = 1.4f;
+    private float tackleDuration = 1.1f;
+
+    public float awareDistance = 100f;
+
+    private float proxDistance = 5f;
+
+    private float normSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemy = this.GetComponent<NavMeshAgent>();
+        enemy = GetComponent<NavMeshAgent>();
+        character = GetComponent<ThirdPersonCharacter>();
         player = GameObject.FindGameObjectWithTag("Player");
         enemy.updateRotation = false;
         stoppingDis = enemy.stoppingDistance;
-        diveTimer = Time.time;
+
+        playerRB = player.GetComponent<Rigidbody>();
+
+        normSpeed = character.m_MoveSpeedMultiplier;
+        normSpeed = Random.Range(normSpeed-(speedDiff/2), normSpeed+(speedDiff/2));
+        character.m_MoveSpeedMultiplier = normSpeed;
+        
+        Debug.Log(character.m_MoveSpeedMultiplier);
+
     }
 
-    void checkMove()
-    {
-
-        float dist = Vector3.Distance(player.transform.position, transform.position);
-
-        if (doesWaitTillCloseToFollow && dist < distanceAwayUntilFollows)
-        {
-            Debug.Log("Waiting");
-            doesWaitTillCloseToFollow = false;
-        }
-        else if (!doesWaitTillCloseToFollow) //always "moving"
-        {
-            Movement();
-        }
-    }
-    void Movement()
-    {
-        if (player != null && enemy != null)
-        {
-            enemy.SetDestination(player.transform.position);
-        }
-
-        else
-            Debug.Log(this + " gameobject cannot find player or its navmesh");
-
-        distanceToGo = enemy.remainingDistance;
-
-        if (distanceToGo < stoppingDis) //to close to do anything
-        {
-            character.Move(Vector3.zero, false, false);
-        }
-        else if (doesDive && enemy.remainingDistance < enemy.stoppingDistance * diveDistanceMultiplyier
-            && enemy.remainingDistance > enemy.stoppingDistance * diveDistanceMultiplyier - 1
-            && enemy.remainingDistance != 0 && Time.time - diveTimer > diveCooldown)
-
-        {
-            Debug.Log("diev");
-            character.tryTackle();
-            diveTimer = Time.time;
-            character.Move(Vector3.zero, false, false);
-        }
-        else if (distanceToGo > stoppingDis) //go hunt player
-        {
-            character.Move(enemy.desiredVelocity, false, false);
-        }
-    }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        checkMove();
+        distanceToGo = Vector3.Distance(transform.position, player.transform.position);
+
+        if (distanceToGo < awareDistance) {
+            if (distanceToGo < proxDistance) {
+                enemy.SetDestination(player.transform.position);
+            } else {
+                enemy.SetDestination(player.transform.position + playerRB.velocity);
+            }
+
+            distanceToGo = enemy.remainingDistance;
+            if (distanceToGo < tackleDis && diveTimer + diveCooldown < Time.time) {
+                diveTimer = Time.time;
+                character.tryTackle();
+            }
+
+            EnemyMove();
+        }
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.tag == "Player")
-        {
-            Debug.Log("Tackled");
-            character.Move(Vector3.zero, false, false);
+    void EnemyMove() {
+        if (diveTimer + tackleDuration < Time.time || diveTimer == 0f) {
+            character.m_MoveSpeedMultiplier = normSpeed;
+
+            character.Move(enemy.desiredVelocity, false, false);
+        } else {
+            character.m_MoveSpeedMultiplier = normSpeed*tackleMultiplier;
         }
     }
 }

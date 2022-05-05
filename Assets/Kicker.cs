@@ -18,8 +18,9 @@ public class Kicker : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
+        Debug.Log(Physics.CheckSphere(kickPoint.position, kickRadius, mask));
         if (Physics.CheckSphere(kickPoint.position, kickRadius, mask) && !kicked) {
             Debug.Log("played kick");
             kickSFX.Play();

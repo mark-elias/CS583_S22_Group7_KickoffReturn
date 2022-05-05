@@ -48,7 +48,11 @@ public class CharacterMove : MonoBehaviour
             if (running) {
                 energy.DepleteStamina(1f);
             } else {
-                energy.AddStamina(1f);
+                if (Mathf.Abs(rb.velocity.magnitude) > 2f) {
+                    energy.AddStamina(0.3f);
+                } else {
+                    energy.AddStamina(1f);
+                }
             }
 
             PullJuke();

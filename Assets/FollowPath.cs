@@ -11,16 +11,22 @@ public class FollowPath : MonoBehaviour
     [SerializeField]
     private Transform B;
 
+    public float speed = 0;
+
     private Vector3 movement;
     private Transform dest;
     private bool MoveToA = true;
-    private float speed = 25;
     private ThirdPersonCharacter entity;
 
     void Start() {
         dest = A;
         entity = GetComponent<ThirdPersonCharacter>();
+
+        if (speed != 0) {
+            entity.m_MoveSpeedMultiplier = speed;
+        }
     }
+    
 
     void FixedUpdate() {
         movement = dest.position - transform.position;
