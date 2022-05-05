@@ -6,7 +6,7 @@ public class ThirdPersonAnimation : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody rb;
-    private float maxSpeed = 5f;
+    private float maxSpeed = 4f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,8 @@ public class ThirdPersonAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("speed", rb.velocity.magnitude / maxSpeed);
+        Debug.Log(rb.velocity.magnitude/maxSpeed);
+
+        animator.SetFloat("speed",  rb.velocity.magnitude/maxSpeed);
     }
 }
