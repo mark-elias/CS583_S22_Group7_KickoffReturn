@@ -20,15 +20,16 @@ public class Enemy_Follow : MonoBehaviour
     private float diveTimer = 0f;
     private float distanceToGo;
     private float stoppingDis;
-    private float tackleDis = 3f;
+    private float tackleDis = 4f;
     private float tackleMultiplier = 2f;
-    private float tackleDuration = 0.8f;
+    private float tackleDuration = 0.6f;
 
     public float awareDistance = 100f;
 
-    private float proxDistance = 8f;
+    private float proxDistance = 7f;
 
     private float normSpeed;
+    public bool playing = true;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +63,7 @@ public class Enemy_Follow : MonoBehaviour
             }
 
             //distanceToGo = enemy.remainingDistance;
-            if (distanceToGo < tackleDis && diveTimer + diveCooldown < Time.time) {
+            if (distanceToGo < tackleDis && diveTimer + diveCooldown < Time.time && playing) {
                 diveTimer = Time.time;
                 character.tryTackle();
             }

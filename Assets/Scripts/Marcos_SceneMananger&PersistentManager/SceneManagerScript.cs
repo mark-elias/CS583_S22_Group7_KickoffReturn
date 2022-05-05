@@ -25,9 +25,18 @@ public class SceneManagerScript : MonoBehaviour
 
     public void StartGame()
     {
-        Debug.Log("GoToPlayScene called");
+        SceneManager.LoadScene("Game");
+    }
 
-        // Load the Play Game scene
+    public void ProgressGame() {
+        if (PersistentManagerScript.Instance.LEVEL < 10) {
+            PersistentManagerScript.Instance.LEVEL++;
+        }
+
+        SceneManager.LoadScene("Game");
+    }
+
+    public void IntroGame() {
         if (VerifySettings()) {
             SceneManager.LoadScene("Kickoff");
         } else {

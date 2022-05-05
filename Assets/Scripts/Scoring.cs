@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Scoring : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Scoring : MonoBehaviour
     {
         //Debug.Log(getScore());
     }
+    
     public float getScore()
     {
         float score;
@@ -39,6 +41,7 @@ public class Scoring : MonoBehaviour
     public void touchDown()
     {
         Debug.Log("TouchDown!!!!!");
+        SceneManager.LoadScene("Win");
     }
 
 }

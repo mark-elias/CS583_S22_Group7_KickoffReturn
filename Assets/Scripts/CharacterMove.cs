@@ -35,6 +35,8 @@ public class CharacterMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cutscene = GetComponent<CutsceneJump>();
         jukeTimestamp = Time.time;
+        FindObjectOfType<AudioManager>().Play("Running");
+        FindObjectOfType<AudioManager>().Pause("Running");
     }
 
     void Update()
@@ -58,6 +60,7 @@ public class CharacterMove : MonoBehaviour
             PullJuke();
             if (direction.magnitude >= 0.1f)
             {
+                FindObjectOfType<AudioManager>().UnPause("Running");
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
@@ -67,10 +70,11 @@ public class CharacterMove : MonoBehaviour
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 finalMove = moveDir * targetSpeed;
             } else {
+                FindObjectOfType<AudioManager>().Pause("Running");
                 finalMove = Vector3.zero;
             }
         } else {
-            finalMove = transform.forward*10f;
+            finalMove = transform.forward*20f;
         }
     }
 
