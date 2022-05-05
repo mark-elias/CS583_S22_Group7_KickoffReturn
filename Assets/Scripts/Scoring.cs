@@ -47,14 +47,24 @@ public class Scoring : MonoBehaviour
 
     public void touchDown()
     {
-    
+
 
         //--------------------------------------------
         // Edited by Marcos
         //
-        SceneManager.LoadScene("WinningScene");
+        Invoke("CallWinningScene", 2f);
+        //SceneManager.LoadScene("WinningScene");
         //
         //----------------------------------------------
     }
 
+    //---------------------------------------------------
+    // Edited by Marcos
+    //
+    public void CallWinningScene()
+    {
+       SceneManager.LoadScene("WinningScene");
+    }
+    //
+    //-----------------------------------------------------------
 }
