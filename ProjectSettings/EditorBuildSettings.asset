@@ -21,13 +21,13 @@ EditorBuildSettings:
     path: Assets/Anthony/Scenes/GameOver.unity
     guid: 3e2e53c38a86f654a9f4f69cf523057b
   - enabled: 1
-    path: Assets/Anthony/Scenes/HowToPlay.unity
-    guid: e5da7eec6ad29a64fa6d87e73db2b0ff
-  - enabled: 1
     path: Assets/Anthony/Scenes/Menu.unity
     guid: beb669ed3b7f5cd4c85206039c5f4fc7
   - enabled: 1
     path: Assets/Anthony/Scenes/Win.unity
     guid: b0bcc9274ed6fd8418d3519270c15aa5
+  - enabled: 1
+    path: Assets/Anthony/Scenes/HowToPlay.unity
+    guid: 3128691e3c725e247a8e081e2c9eae70
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}

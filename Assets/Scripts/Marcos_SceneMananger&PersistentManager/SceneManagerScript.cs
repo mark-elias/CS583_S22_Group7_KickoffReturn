@@ -106,7 +106,7 @@ public class SceneManagerScript : MonoBehaviour
 
     public void ResetSettings() {
         SetName("");
-        SetColor(1);
+        SetColor(0);
         SetLevel(0);
     }
 
