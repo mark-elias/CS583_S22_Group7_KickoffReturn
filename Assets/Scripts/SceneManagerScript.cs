@@ -47,14 +47,14 @@ public class SceneManagerScript : MonoBehaviour
         // displays STATIC values: NAME, COLOR, and DIFFICULTY to the PlayGameScene
         // when that scene is loaded
 
-        if (Output_Testing_NAME != null)
-            Output_Testing_NAME.text = PersistentManagerScript.Instance.PLAYER_NAME;
+        // if (Output_Testing_NAME != null)
+        //     Output_Testing_NAME.text = PersistentManagerScript.Instance.PLAYER_NAME;
 
-        if (Output_Testing_COLOR != null)
-            Output_Testing_COLOR.text = PersistentManagerScript.Instance.PLAYER_COLOR;
+        // if (Output_Testing_COLOR != null)
+        //     Output_Testing_COLOR.text = PersistentManagerScript.Instance.PLAYER_COLOR;
 
-        if (Output_Testing_DIFFICULTY != null)
-            Output_Testing_DIFFICULTY.text = PersistentManagerScript.Instance.DIFFICULTY;
+        // if (Output_Testing_DIFFICULTY != null)
+        //     Output_Testing_DIFFICULTY.text = PersistentManagerScript.Instance.DIFFICULTY;
 
     }
 
@@ -72,6 +72,7 @@ public class SceneManagerScript : MonoBehaviour
 
     public void GoToCutScene()
     {
+        Debug.Log("GoToCutscene");
         SceneManager.LoadScene("Cutscene");
     }
     public void GoToPlayGameScene()
@@ -125,7 +126,7 @@ public class SceneManagerScript : MonoBehaviour
         // use .text and NOT toString()
         PersistentManagerScript.Instance.PLAYER_NAME = Input_Name.text;
 
-        Output_Testing_NAME.text = PersistentManagerScript.Instance.PLAYER_NAME;
+        // Output_Testing_NAME.text = PersistentManagerScript.Instance.PLAYER_NAME;
 
 
     }
@@ -149,7 +150,7 @@ public class SceneManagerScript : MonoBehaviour
 
             PersistentManagerScript.Instance.PLAYER_COLOR = "BLUE";
 
-            Output_Testing_COLOR.text = PersistentManagerScript.Instance.PLAYER_COLOR;
+            // Output_Testing_COLOR.text = PersistentManagerScript.Instance.PLAYER_COLOR;
 
         }
 
@@ -159,7 +160,7 @@ public class SceneManagerScript : MonoBehaviour
 
             PersistentManagerScript.Instance.PLAYER_COLOR = "GREEN";
 
-            Output_Testing_COLOR.text = PersistentManagerScript.Instance.PLAYER_COLOR;
+            // Output_Testing_COLOR.text = PersistentManagerScript.Instance.PLAYER_COLOR;
         }
 
         else if (Input_Color.value == 2)
@@ -168,7 +169,7 @@ public class SceneManagerScript : MonoBehaviour
 
             PersistentManagerScript.Instance.PLAYER_COLOR = "RED";
 
-            Output_Testing_COLOR.text = PersistentManagerScript.Instance.PLAYER_COLOR;
+            // Output_Testing_COLOR.text = PersistentManagerScript.Instance.PLAYER_COLOR;
         }
 
         else
@@ -197,7 +198,7 @@ public class SceneManagerScript : MonoBehaviour
 
             PersistentManagerScript.Instance.DIFFICULTY = "EASY";
 
-            Output_Testing_DIFFICULTY.text = PersistentManagerScript.Instance.DIFFICULTY;
+            // Output_Testing_DIFFICULTY.text = PersistentManagerScript.Instance.DIFFICULTY;
         }
 
         else if (Input_Difficulty.value == 1)
@@ -206,7 +207,7 @@ public class SceneManagerScript : MonoBehaviour
 
             PersistentManagerScript.Instance.DIFFICULTY = "MEDIUM";
 
-            Output_Testing_DIFFICULTY.text = PersistentManagerScript.Instance.DIFFICULTY;
+            // Output_Testing_DIFFICULTY.text = PersistentManagerScript.Instance.DIFFICULTY;
         }
 
         else if (Input_Difficulty.value == 2)
@@ -215,7 +216,7 @@ public class SceneManagerScript : MonoBehaviour
 
             PersistentManagerScript.Instance.DIFFICULTY = "HARD";
 
-            Output_Testing_DIFFICULTY.text = PersistentManagerScript.Instance.DIFFICULTY;
+            // Output_Testing_DIFFICULTY.text = PersistentManagerScript.Instance.DIFFICULTY;
         }
 
         else

@@ -12,10 +12,11 @@ public class touchDown : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.transform.name);
+
         if (collision.transform.tag == "Player")
         {
-           
+
+            Debug.Log("TouchDown");
             if (playerScore != null)
             {
                 playerScore.GetComponent<Scoring>().touchDown();
