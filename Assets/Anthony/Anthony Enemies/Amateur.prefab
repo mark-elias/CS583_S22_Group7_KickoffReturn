@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  speedDiff: 0.3
+  awareDistance: 100
 --- !u!54 &5048186280894194369
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -701,12 +701,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 150
+  m_MovingTurnSpeed: 200
   m_StationaryTurnSpeed: 250
   m_JumpPower: 100
   m_GravityMultiplier: 1.31
   m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
+  m_MoveSpeedMultiplier: 1.1
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.2
 --- !u!114 &1688599719019107981

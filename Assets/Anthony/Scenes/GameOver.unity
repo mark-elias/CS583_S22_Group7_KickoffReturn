@@ -328,15 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a170a952802319449936e62c4fbfd0eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Output_Testing_NAME: {fileID: 0}
-  Output_Testing_COLOR: {fileID: 0}
-  Output_Testing_DIFFICULTY: {fileID: 0}
-  Input_Name: {fileID: 0}
-  Output_Name: {fileID: 0}
-  Input_Color: {fileID: 0}
-  Output_Color: {fileID: 0}
-  Input_Difficulty: {fileID: 0}
-  Output_Difficulty: {fileID: 0}
+  update: {fileID: 0}
+  jersey: {fileID: 0}
 --- !u!4 &451243990
 Transform:
   m_ObjectHideFlags: 0
@@ -567,7 +560,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 451243989}
         m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
-        m_MethodName: GoToPlayGameScene
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

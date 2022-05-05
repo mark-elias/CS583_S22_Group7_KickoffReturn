@@ -21,12 +21,12 @@ public class Enemy_Follow : MonoBehaviour
     private float distanceToGo;
     private float stoppingDis;
     private float tackleDis = 3f;
-    private float tackleMultiplier = 1.4f;
-    private float tackleDuration = 1.1f;
+    private float tackleMultiplier = 2f;
+    private float tackleDuration = 0.8f;
 
     public float awareDistance = 100f;
 
-    private float proxDistance = 5f;
+    private float proxDistance = 8f;
 
     private float normSpeed;
 
@@ -61,7 +61,7 @@ public class Enemy_Follow : MonoBehaviour
                 enemy.SetDestination(player.transform.position + playerRB.velocity);
             }
 
-            distanceToGo = enemy.remainingDistance;
+            //distanceToGo = enemy.remainingDistance;
             if (distanceToGo < tackleDis && diveTimer + diveCooldown < Time.time) {
                 diveTimer = Time.time;
                 character.tryTackle();

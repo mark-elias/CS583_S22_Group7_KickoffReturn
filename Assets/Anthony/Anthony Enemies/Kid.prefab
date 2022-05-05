@@ -2036,7 +2036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  speedDiff: 0.3
+  awareDistance: 100
 --- !u!54 &8227006539012259057
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2125,7 +2125,7 @@ MonoBehaviour:
   m_JumpPower: 100
   m_GravityMultiplier: 2
   m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 0.2
+  m_MoveSpeedMultiplier: 0.4
   m_AnimSpeedMultiplier: 1.6
   m_GroundCheckDistance: 0.2
 --- !u!114 &1458656035

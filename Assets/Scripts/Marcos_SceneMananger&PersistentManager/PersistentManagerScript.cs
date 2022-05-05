@@ -16,11 +16,11 @@ public class PersistentManagerScript : MonoBehaviour
     //
     //-------------------------------------------------------------------------
     
-    public string PLAYER_NAME;
+    public string PLAYER_NAME = "";
 
-    public string PLAYER_COLOR;
+    public Color PLAYER_COLOR = Color.blue;
 
-    public string DIFFICULTY;
+    public int LEVEL = 0;
 
     // --------------------------------
 
