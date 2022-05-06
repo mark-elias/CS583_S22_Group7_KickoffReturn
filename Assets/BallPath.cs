@@ -14,7 +14,6 @@ public class BallPath : MonoBehaviour
     private GameObject player;
     private bool caught = false;
     private AudioSource catchSFX;
-    private Vector3 targetVel = new Vector3();
     private Vector3 refVel = Vector3.zero;
 
     void Start() {

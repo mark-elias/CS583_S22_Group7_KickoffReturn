@@ -47,15 +47,6 @@ public class CharacterMove : MonoBehaviour
             Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
             CheckRun();
-            if (running) {
-                energy.DepleteStamina(1f);
-            } else {
-                if (Mathf.Abs(rb.velocity.magnitude) > 2f) {
-                    energy.AddStamina(0.3f);
-                } else {
-                    energy.AddStamina(1f);
-                }
-            }
 
             PullJuke();
             if (direction.magnitude >= 0.1f)
@@ -78,6 +69,18 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
+    void UpdateStamina() {
+        if (running) {
+                energy.DepleteStamina(1f);
+            } else {
+                if (Mathf.Abs(rb.velocity.magnitude) > 2f) {
+                    energy.AddStamina(0.3f);
+                } else {
+                    energy.AddStamina(1f);
+                }
+            }
+    }
+
     void CheckRun() {
          if (running && (energy.curStamina <= 0 || !Input.GetKey(KeyCode.LeftShift))) {
             running = false;
@@ -95,9 +98,11 @@ public class CharacterMove : MonoBehaviour
     void PullJuke() {
         if (jukeType == "none" && jukeTimestamp + jukeRecovery <= Time.time) {
             if (Input.GetKey(KeyCode.E)) {
+                FindObjectOfType<AudioManager>().Play("Juke");
                 jukeTimestamp = Time.time;
                 jukeType = "right";
             } else if (Input.GetKey(KeyCode.Q)) {
+                FindObjectOfType<AudioManager>().Play("Juke");
                 jukeTimestamp = Time.time;
                 jukeType = "left";
             }
@@ -105,6 +110,8 @@ public class CharacterMove : MonoBehaviour
     }
 
     void FixedUpdate() {
+        UpdateStamina();
+
         if (jukeType == "none" && jukeTimestamp + jukeDuration <= Time.time) {
             rb.AddForce(finalMove);
         } else {
